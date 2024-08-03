@@ -1,0 +1,32 @@
+version: '3.8'
+
+services:
+  ecommerce-frontend:
+    build: ./ecommerce-frontend
+    ports:
+      - "3000:80"
+    depends_on:
+      - stock-service
+      - payment-service
+
+  stock-service:
+    build: ./stock-service
+    depends_on:
+      - rabbitmq
+    ports:
+      - "4000:4000"
+    environment:
+      - RABBITMQ_HOST=rabbitmq
+
+  payment-service:
+    build: ./payment-service
+    depends_on:
+      - rabbitmq
+    environment:
+      - RABBITMQ_HOST=rabbitmq
+
+  rabbitmq:
+    image: rabbitmq:3-management
+    ports:
+      - "5672:5672"
+      - "15672:15672"
