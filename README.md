@@ -14,6 +14,8 @@ No nosso exemplo de hoje vamos simular o seguinte cenário:
 
 ![alt text](image.png)
 
+## Exemplo prático
+
 O sistema é composto por 4 serviços:
 
 - **ecommerce-frontend**:
